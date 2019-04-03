@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "shortid": "^2.2.14"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
