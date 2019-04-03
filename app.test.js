@@ -77,6 +77,37 @@ describe('/api/v1/notes', () => {
     });
   });
 
+  describe('POST to /notes', () => {
+    it('should return a status of 201 with an updated notes array', async () => {
+      expect(app.locals.notes.length).toBe(2);
+
+      shortid.generate = jest.fn().mockImplementation(() => '329');
+      const newNote = {
+        id: '329',
+        title: 'newTitle', 
+        body: [{ id: shortid.generate(), text: 'newFaketext' }]
+      };
+      const response = await request(app).post('/api/v1/notes')
+        .send(newNote);
+      expect(response.status).toBe(201);
+      expect(response.body).toEqual(newNote);
+      expect(app.locals.notes.length).toBe(3);
+    });
+
+    it('should return a status of 422 with a non-modified array of notes', () => {
+
+    });
+  });
+
+  describe('DELETE to /notes/:id', () => {
+    it('should return a status of 204 with an updated notes array', () => {
+
+    });
+    
+    it('should return a status of 404 with a non-modified array of notes', () => {
+
+    });
+  });
 });
 
 
