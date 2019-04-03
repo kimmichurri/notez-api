@@ -30,21 +30,35 @@ app.delete('/api/v1/:id', (request, response) => {
 });
 
 app.put('/api/v1/:id', (request, response) => {
-  const { title, body } = request.body
-  const { id } = request.params
+  const { title, body } = request.body;
+  const { id } = request.params;
   let found = false;
   const updatedNotes = app.locals.notes.map(note => {
-    if(note.id === id) {
+    if (note.id === id) {
       found = true
       return { id, title, body };
     } else {
       return note
     }
   });
-      if(found === false) {
+      if (found === false) {
         return response.status(404).json('Note does not exist')
       } else {
         app.locals.notes = updatedNotes
         return response.status(204).json('Successful update')
       }
+});
+
+app.post('/api/v1/', (request, response) => {
+  const { title, body } = request.body;
+  if (!title || body.length === 0) {
+    return response.status(422).json('Please enter a title and at least one list item')
+  } else {
+    const newNote = {
+      id: shortid.generate(),
+      ...request.body
+    }
+    app.locals.notes.push(newNote);
+    response.status(201).json(newNote);
+  }
 });
