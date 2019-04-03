@@ -62,6 +62,19 @@ describe('/api/v1/notes', () => {
       expect(response.status).toBe(404);
       expect(app.locals.notes[0]).toEqual(notes[0]);
     });
+
+    it('should return a 422 and error message if the request body is not "ok"', async () => {
+      expect(app.locals.notes[0]).toEqual(notes[0]);
+      
+      const badNoteUpdate = {
+        title: 'newTitle', 
+        bboddy: [{ id: shortid.generate(), text: 'newFaketext' }] 
+      };
+      const response = await request(app).put('/api/v1/notes/1')
+        .send(badNoteUpdate);
+      expect(response.status).toBe(422);
+      expect(app.locals.notes[0]).toEqual(notes[0]);
+    });
   });
 
 });
