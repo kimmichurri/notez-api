@@ -50,12 +50,14 @@ app.put('/api/v1/notes/:id', (request, response) => {
       return note;
     }
   });
-      if (found === false) {
-        return response.status(404).json('Note does not exist');
-      } else {
-        app.locals.notes = updatedNotes;
-        return response.status(204).json('Successful update');
-      }
+  if (found === false) {
+    return response.status(404).json('Note does not exist');
+  } else if (!title || !body) {
+    return response.status(422).json('Please enter a title and at least one list item');
+  } else {
+    app.locals.notes = updatedNotes;
+    return response.status(204).json('Successful update');
+  }
 });
 
 app.post('/api/v1/notes/', (request, response) => {
