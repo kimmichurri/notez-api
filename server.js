@@ -30,3 +30,24 @@ app.delete('/api/v1/:id', (request, response) => {
     return response.status(204).json(note)
   }
 })
+
+app.put('/api/v1/:id', (request, response) => {
+  const { title, body } = request.body
+  const { id } = request.params
+  id = parseInt(id);
+  let found = false;
+  const updatedNotes = app.locals.notes.map(note => {
+    if(note.id === id) {
+      found = true
+      return { id, title, body };
+    } else {
+      return note
+    }
+  });
+      if(!found) {
+        return response.status(404).json('Note does not exist')
+      } else {
+        app.locals.notes = updatedNotes
+        return response.status(204).json('Successful update')
+      }
+});
