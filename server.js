@@ -27,6 +27,6 @@ app.delete('/api/v1/:id', (request, response) => {
     return response.sendStatus(404).json('Note does not exist')
   } else {
     notes.splice(index, 1)
-    return response.status(206).json(note)
+    return response.status(204).json(note)
   }
 })
