@@ -27,6 +27,7 @@ describe('/api/v1/notes', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual(notes[0]);
     });
+
     it('should return a status of 404 with a message of "Note does not exist"', async () => {
       const response = await request(app).get('/api/v1/notes/1012');
       expect(response.status).toBe(404);
