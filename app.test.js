@@ -34,6 +34,23 @@ describe('/api/v1/notes', () => {
     });
   });
 
+  describe('DELETE to /notes/:id', () => {
+    it('should return a status of 204 with an updated notes array', async () => {
+      expect(app.locals.notes[0].id).toBe('1');
+      const response = await request(app).delete('/api/v1/notes/1');
+      expect(response.status).toBe(204);
+      expect(app.locals.notes[0].id).toBe('2');
+    });
+
+    it('should return a status of 404 with a non-modified array of notes', async () => {
+      expect(app.locals.notes.length).toBe(2);
+      const response = await request(app).delete('/api/v1/notes/511012329');
+      expect(response.status).toBe(404);
+      expect(response.body).toBe('Note does not exist');
+      expect(app.locals.notes.length).toBe(2);
+    });
+  });
+
   describe('PUT to /notes/:id', () => {
     it('should return a status of 204 and update note object', async () => {
       expect(app.locals.notes[0]).toEqual(notes[0]);
@@ -94,20 +111,19 @@ describe('/api/v1/notes', () => {
       expect(app.locals.notes.length).toBe(3);
     });
 
-    it('should return a status of 422 with a non-modified array of notes', () => {
-
+    it('should return a status of 422 with a non-modified array of notes', async () => {
+      expect(app.locals.notes.length).toBe(2);
+      const badNoteUpdate = {
+        title: '',
+        body: [{ id: shortid.generate(), text: 'newFaketext' }]
+      };
+      const response = await request(app).post('/api/v1/notes')
+        .send(badNoteUpdate);
+      expect(response.status).toBe(422)
+      expect(app.locals.notes.length).toBe(2)
     });
   });
 
-  describe('DELETE to /notes/:id', () => {
-    it('should return a status of 204 with an updated notes array', () => {
-
-    });
-    
-    it('should return a status of 404 with a non-modified array of notes', () => {
-
-    });
-  });
 });
 
 
