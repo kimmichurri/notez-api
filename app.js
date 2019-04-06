@@ -6,8 +6,19 @@ app.use(cors());
 app.use(express.json());
 
 app.locals.notes = [
-  { id: '1', title: 'fakeTitle', body: [{id: shortid.generate(), text: 'faketext'}] },
-  { id: '2', title: 'fakeTitle2', body: [{id: shortid.generate(), text: 'faketext2'}] }
+  { 
+    id: '1', 
+    title: 'fakeTitle', 
+    listItems: [
+      {id: shortid.generate(), text: 'faketext'}, 
+      {id: shortid.generate(), text: 'faketextb'}
+    ]},
+  { 
+    id: '2', 
+    title: 'fakeTitle2', 
+    listItems: [
+      {id: shortid.generate(), text: 'faketext2'}
+    ]}
 ];
 
 app.get('/api/v1/notes/', (request, response) => {
@@ -39,20 +50,20 @@ app.delete('/api/v1/notes/:id', (request, response) => {
 });
 
 app.put('/api/v1/notes/:id', (request, response) => {
-  const { title, body } = request.body;
+  const { title, listItems } = request.listItems;
   const { id } = request.params;
   let found = false;
   const updatedNotes = app.locals.notes.map(note => {
     if (note.id === id) {
       found = true;
-      return { id, title, body };
+      return { id, title, listItems };
     } else {
       return note;
     }
   });
   if (found === false) {
     return response.status(404).json('Note does not exist');
-  } else if (!title || !body) {
+  } else if (!title || !listItems) {
     return response.status(422).json('Please enter a title and at least one list item');
   } else {
     app.locals.notes = updatedNotes;
@@ -61,13 +72,13 @@ app.put('/api/v1/notes/:id', (request, response) => {
 });
 
 app.post('/api/v1/notes/', (request, response) => {
-  const { title, body } = request.body;
-  if (!title || body.length === 0) {
+  const { title, listItems } = request.listItems;
+  if (!title || listItems.length === 0) {
     return response.status(422).json('Please enter a title and at least one list item');
   } else {
     const newNote = {
       id: shortid.generate(),
-      ...request.body
+      ...request.listItems
     }
     app.locals.notes.push(newNote);
     response.status(201).json(newNote);
