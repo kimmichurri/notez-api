@@ -6,8 +6,19 @@ app.use(cors());
 app.use(express.json());
 
 app.locals.notes = [
-  { id: '1', title: 'fakeTitle', listItems: [{id: shortid.generate(), text: 'faketext'}] },
-  { id: '2', title: 'fakeTitle2', listItems: [{id: shortid.generate(), text: 'faketext2'}] }
+  { 
+    id: '1', 
+    title: 'fakeTitle', 
+    listItems: [
+      {id: shortid.generate(), text: 'faketext'}, 
+      {id: shortid.generate(), text: 'faketextb'}
+    ]},
+  { 
+    id: '2', 
+    title: 'fakeTitle2', 
+    listItems: [
+      {id: shortid.generate(), text: 'faketext2'}
+    ]}
 ];
 
 app.get('/api/v1/notes/', (request, response) => {
