@@ -21,6 +21,7 @@
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-jest": "^24.7.0",
+    "nodemon": "^1.18.10",
     "supertest": "^4.0.2"
   }
 }
