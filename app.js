@@ -37,15 +37,19 @@ app.get('/api/v1/notes/:id', (request, response) => {
 })
 
 app.delete('/api/v1/notes/:id', (request, response) => {
+
+  console.log('inside delete')
   const { id } = request.params;
   const { notes } = app.locals;
   const note = notes.find(note => note.id == id);
   const index = notes.indexOf(note);
   if (!note) {
+    console.log('fail')
     return response.status(404).json('Note does not exist');
   } else {
+    console.log('success')
     notes.splice(index, 1);
-    return response.status(204).json(note);
+    return response.sendStatus(204);
   }
 });
 
