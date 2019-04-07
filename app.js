@@ -34,7 +34,7 @@ app.delete('/api/v1/notes/:id', (request, response) => {
     return response.status(404).json('Note does not exist');
   } else {
     notes.splice(index, 1);
-    return response.status(204).json(note);
+    return response.sendStatus(204);
   }
 });
 
