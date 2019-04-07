@@ -37,8 +37,6 @@ app.get('/api/v1/notes/:id', (request, response) => {
 })
 
 app.delete('/api/v1/notes/:id', (request, response) => {
-
-  console.log('inside delete')
   const { id } = request.params;
   const { notes } = app.locals;
   const note = notes.find(note => note.id == id);
