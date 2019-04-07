@@ -52,7 +52,7 @@ app.delete('/api/v1/notes/:id', (request, response) => {
 });
 
 app.put('/api/v1/notes/:id', (request, response) => {
-  const { title, listItems } = request.listItems;
+  const { title, listItems } = request.body;
   const { id } = request.params;
   let found = false;
   const updatedNotes = app.locals.notes.map(note => {
@@ -74,13 +74,13 @@ app.put('/api/v1/notes/:id', (request, response) => {
 });
 
 app.post('/api/v1/notes/', (request, response) => {
-  const { title, listItems } = request.listItems;
+  const { title, listItems } = request.body;
   if (!title || listItems.length === 0) {
     return response.status(422).json('Please enter a title and at least one list item');
   } else {
     const newNote = {
       id: shortid.generate(),
-      ...request.listItems
+      ...request.body
     }
     app.locals.notes.push(newNote);
     response.status(201).json(newNote);
