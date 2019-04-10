@@ -1,4 +1,4 @@
-# Trapper Keeper
+# Trapper-Keeper
 
 This repository will serve as the Trapper Keeper "backend". The "frontend" can be found at https://github.com/JustinTorrance/notez
 
