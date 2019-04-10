@@ -1,6 +1,8 @@
 # Trapper Keeper
 
-This repository will serve as the Trapper Keeper "backend".
+This repository will serve as the Trapper Keeper "backend". The "frontend" can be found at https://github.com/JustinTorrance/notez
+
+This project was a week long group project and created by Kim Myers(https://github.com/kimmichurri), [Justin Torrance](https://github.com/JustinTorrance), and [Joshua Lavarine](https://github.com/jlavar1).
 
 ## Project Setup
 
@@ -24,3 +26,22 @@ This repository will serve as the Trapper Keeper "backend".
 
 * ##### POST '/api/v1/notes/'
   Allows users to create a new note and save it in the backend.
+
+## Tech / Frameworks Used
+- Node.js
+- Express.js
+
+## What we learned
+We learned how to effectively implement a backend. Creating a backend was a very interesting aspect of the project as our previous backend projects were pre-built.
+
+## Challenges faced
+This was the first time that any of us configured a backend. The process was different from the frontend, but the language was the same. Learning syntax and understanding the setup was the biggest challenge. 
+
+## "Wins"
+Testing on the backend was far more straight-forward than testing the frontend. We were all pleasantly surprised and really enjoyed setting-up this backend portion. 
+
+## Tools Used
+[VSCode](https://code.visualstudio.com/)
+
+## Credits
+http://frontend.turing.io/projects/trapper-keeper.html
