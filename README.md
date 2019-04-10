@@ -2,7 +2,7 @@
 
 This repository will serve as the Trapper Keeper "backend". The "frontend" can be found at https://github.com/JustinTorrance/notez
 
-This project was a week long group project and created by Kim Myers(https://github.com/kimmichurri), [Justin Torrance](https://github.com/JustinTorrance), and [Joshua Lavarine](https://github.com/jlavar1).
+This project was a week long group project and created by Kim Myers, [Justin Torrance](https://github.com/JustinTorrance), and [Joshua Lavarine](https://github.com/jlavar1).
 
 ## Project Setup
 
