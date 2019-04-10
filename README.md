@@ -10,8 +10,7 @@ This repository will serve as the Trapper Keeper "backend".
 
 ## API Endpoints
 
- * ##### GET notes `/api/v1/notes/`
-
+* ##### GET notes '/api/v1/notes/'
   Allows users to view notes saved in the backend. 
   
 * ##### GET note by ID '/api/v1/notes/:id'
